@@ -16,10 +16,11 @@ class NetModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit.Builder {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BuildConfig.BASE_URL)
+            .build()
     }
 
     @Singleton
