@@ -1,7 +1,9 @@
 package com.example.mvvm_clean_architecure_2.presentation.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -46,15 +48,28 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
             binding.tvTitle.text = article.title
-            binding.tvDescription.text = ""
+            binding.tvDescription.text =article.description
             binding.tvPublishedAt.text = article.publishedAt
             binding.tvSource.text = article.source.name
 
             Glide.with(binding.ivArticleImage.context)
                 .load(article.urlToImage)
                 .into(binding.ivArticleImage)
+
+            binding.root.setOnClickListener {
+                onItemClickListener?.let {
+                    it(article)
+                }
+            }
         }
     }
 
+
+
+    private var onItemClickListener :((Article)->Unit)?=null
+
+    fun setOnItemClickListener(listener : (Article)->Unit){
+        onItemClickListener = listener
+    }
 
 }
