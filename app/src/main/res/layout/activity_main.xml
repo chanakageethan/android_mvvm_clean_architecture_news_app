@@ -18,6 +18,7 @@
 <!--        android:layout_weight="7"-->
 <!--        app:navGraph="@navigation/nav_graph"-->
 <!--        />-->
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -32,8 +33,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:menu="@menu/bottom_menu" >
+        app:menu="@menu/bottom_menu"
+        android:background="@color/search_background"
+        app:itemTextColor="@color/list_text"
+        app:itemIconTint="@color/list_text"
+        >
 
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 </LinearLayout>
