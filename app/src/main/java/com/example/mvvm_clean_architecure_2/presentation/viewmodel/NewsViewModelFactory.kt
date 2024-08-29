@@ -3,6 +3,7 @@ package com.example.mvvm_clean_architecure_2.presentation.viewmodel
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.mvvm_clean_achitecture.domain.usecase.DeleteSavedUseCase
 import com.example.mvvm_clean_achitecture.domain.usecase.GetNewsHeadlinesUseCase
 import com.example.mvvm_clean_achitecture.domain.usecase.GetSavedNewsUseCase
 import com.example.mvvm_clean_achitecture.domain.usecase.GetSearchedUseCase
@@ -13,7 +14,8 @@ class NewsViewModelFactory(
     private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
     private val getSearchedUseCase: GetSearchedUseCase,
     private val saveNewsUseCase: SaveNewsUseCase,
-    private val getSavedNewsUseCase: GetSavedNewsUseCase
+    private val getSavedNewsUseCase: GetSavedNewsUseCase,
+    private val deleteSavedUseCase: DeleteSavedUseCase
 
 ) : ViewModelProvider.Factory {
 
@@ -23,7 +25,8 @@ class NewsViewModelFactory(
             getNewsHeadlinesUseCase,
             getSearchedUseCase,
             saveNewsUseCase,
-            getSavedNewsUseCase
+            getSavedNewsUseCase,
+            deleteSavedUseCase
         ) as T
     }
 }

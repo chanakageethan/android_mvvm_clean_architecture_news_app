@@ -1,6 +1,7 @@
 package com.example.mvvm_clean_architecure_2.presentation.di
 
 import com.example.mvvm_clean_achitecture.domain.repository.NewsRepository
+import com.example.mvvm_clean_achitecture.domain.usecase.DeleteSavedUseCase
 import com.example.mvvm_clean_achitecture.domain.usecase.GetNewsHeadlinesUseCase
 import com.example.mvvm_clean_achitecture.domain.usecase.GetSavedNewsUseCase
 import com.example.mvvm_clean_achitecture.domain.usecase.GetSearchedUseCase
@@ -46,5 +47,13 @@ class UserCaseModule {
         newsRepository: NewsRepository
     ):GetSavedNewsUseCase{
         return GetSavedNewsUseCase(newsRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeleteSavedNewsUseCase(
+        newsRepository: NewsRepository
+    ):DeleteSavedUseCase{
+        return DeleteSavedUseCase(newsRepository)
     }
 }

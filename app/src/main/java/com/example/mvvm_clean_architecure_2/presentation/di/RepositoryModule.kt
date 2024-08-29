@@ -23,4 +23,6 @@ class RepositoryModule {
     ):NewsRepository{
         return NewsRepositoryImpl(newsRemoteDataSource,newsLocalDataSource)
     }
+
+
 }
