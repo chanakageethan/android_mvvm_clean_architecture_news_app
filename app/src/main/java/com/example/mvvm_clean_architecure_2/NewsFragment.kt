@@ -53,7 +53,7 @@ class NewsFragment : Fragment() {
             try {
                     findNavController().navigate(
                         R.id.action_newsFragment_to_infoFragment,
-//                        bundle
+                        bundle
                     )
 
             }catch (e:Exception){
@@ -191,7 +191,7 @@ class NewsFragment : Fragment() {
 
     private fun viewSearchedNewsList() {
 
-        viewModel.searchedNews.observe(viewLifecycleOwner) { response ->
+        viewModel.searchedNews.observe(this) { response ->
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()

@@ -2,6 +2,7 @@ package com.example.mvvm_clean_architecure_2.presentation.di
 
 import com.example.mvvm_clean_achitecture.domain.repository.NewsRepository
 import com.example.mvvm_clean_architecure_2.repository.NewsRepositoryImpl
+import com.example.mvvm_clean_architecure_2.repository.dataSource.NewsLocalDataSource
 import com.example.mvvm_clean_architecure_2.repository.dataSource.NewsRemoteDataSource
 import dagger.Module
 import dagger.Provides
@@ -17,8 +18,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideNewsRepository(
-        newsRemoteDataSource: NewsRemoteDataSource
+        newsRemoteDataSource: NewsRemoteDataSource,
+        newsLocalDataSource: NewsLocalDataSource
     ):NewsRepository{
-        return NewsRepositoryImpl(newsRemoteDataSource)
+        return NewsRepositoryImpl(newsRemoteDataSource,newsLocalDataSource)
     }
 }

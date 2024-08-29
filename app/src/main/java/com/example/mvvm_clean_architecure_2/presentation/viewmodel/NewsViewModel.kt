@@ -6,22 +6,29 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.mvvm_clean_achitecture.data.model.APIResponse
+import com.example.mvvm_clean_achitecture.data.model.Article
 import com.example.mvvm_clean_achitecture.data.util.Resource
 import com.example.mvvm_clean_achitecture.domain.usecase.GetNewsHeadlinesUseCase
+import com.example.mvvm_clean_achitecture.domain.usecase.GetSavedNewsUseCase
 import com.example.mvvm_clean_achitecture.domain.usecase.GetSearchedUseCase
+import com.example.mvvm_clean_achitecture.domain.usecase.SaveNewsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
     private val app: Application,
     val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
-    private val getSearchedUseCase: GetSearchedUseCase
+    private val getSearchedUseCase: GetSearchedUseCase,
+    private val saveNewsUseCase: SaveNewsUseCase,
+    private val getSavedNewsUseCase: GetSavedNewsUseCase
 
-) : AndroidViewModel(app) {
+    ) : AndroidViewModel(app) {
     val newsHeadlines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
 
@@ -73,14 +80,13 @@ class NewsViewModel(
     }
 
 
-
     //search
-    val searchedNews : MutableLiveData<Resource<APIResponse>> = MutableLiveData()
+    val searchedNews: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
     fun searchNews(
-        country:String,
-        searchQuery:String,
-        page:Int
+        country: String,
+        searchQuery: String,
+        page: Int
     ) = viewModelScope.launch {
         searchedNews.postValue(Resource.Loading())
         try {
@@ -94,11 +100,23 @@ class NewsViewModel(
             } else {
                 searchedNews.postValue(Resource.Error("No internet connection"))
             }
-        }catch (e:Exception){
+        } catch (e: Exception) {
             searchedNews.postValue(Resource.Error(e.message.toString()))
         }
     }
 
+
+    //localData
+
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        saveNewsUseCase.execute(article)
+    }
+
+    fun getSavedNews()= liveData{
+        getSavedNewsUseCase.execute().collect(){
+            emit(it)
+        }
+    }
 
 
 }
