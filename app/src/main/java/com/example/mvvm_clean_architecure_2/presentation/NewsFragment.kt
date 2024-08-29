@@ -1,4 +1,4 @@
-package com.example.mvvm_clean_architecure_2
+package com.example.mvvm_clean_architecure_2.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm_clean_achitecture.data.util.Resource
+import com.example.mvvm_clean_architecure_2.R
 import com.example.mvvm_clean_architecure_2.databinding.FragmentNewsBinding
 import com.example.mvvm_clean_architecure_2.presentation.adapter.NewsAdapter
 import com.example.mvvm_clean_architecure_2.presentation.viewmodel.NewsViewModel

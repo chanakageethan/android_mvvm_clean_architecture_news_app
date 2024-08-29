@@ -1,4 +1,4 @@
-package com.example.mvvm_clean_architecure_2.presentation.viewmodel
+package com.example.mvvm_clean_architecure_2
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

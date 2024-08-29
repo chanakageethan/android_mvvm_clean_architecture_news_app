@@ -1,14 +1,14 @@
-package com.example.mvvm_clean_architecure_2
+package com.example.mvvm_clean_architecure_2.presentation
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.mvvm_clean_architecure_2.R
 import com.example.mvvm_clean_architecure_2.databinding.ActivityMainBinding
 import com.example.mvvm_clean_architecure_2.presentation.adapter.NewsAdapter
 import com.example.mvvm_clean_architecure_2.presentation.viewmodel.NewsViewModel
